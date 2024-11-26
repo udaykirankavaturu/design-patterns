@@ -31,12 +31,12 @@ int main() {
     // Can't call constructor
     // Logger* logger = new Logger();
 
-    // Logger* loggerInstance2 = Logger::getInstance();   
-    // loggerInstance2->log("hello2");  
-    // Logger* loggerInstance3 = Logger::getInstance(); 
-    // loggerInstance3->log("hello3");  
-    // Logger* loggerInstance4 = Logger::getInstance();
-    // loggerInstance4->log("hello4");  
+    Logger* loggerInstance2 = Logger::getInstance();   
+    loggerInstance2->log("hello2");  
+    Logger* loggerInstance3 = Logger::getInstance(); 
+    loggerInstance3->log("hello3");  
+    Logger* loggerInstance4 = Logger::getInstance();
+    loggerInstance4->log("hello4");  
     
     return 0;
 }

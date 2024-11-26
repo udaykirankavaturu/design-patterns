@@ -2,7 +2,6 @@
 #include <string>
 #include <mutex>
 #include <thread>
-#include <chrono>
 using namespace std;
 
 class Logger {
@@ -13,7 +12,7 @@ private:
 
     Logger() {
         instanceCount++;
-        cout <<endl<< "Instance count: " << instanceCount << endl; 
+        cout <<endl<< "Instance count: " << instanceCount << endl;  
     }  // Private constructor
     
     // Prevent copying and assignment
@@ -26,7 +25,7 @@ public:
             mtx.lock();// remove lock to see thread race conditions
             if (instance == nullptr) {
                 instance = new Logger();
-            }
+            } 
             mtx.unlock(); 
         }
         return instance;
