@@ -28,28 +28,46 @@ public:
     DocumentBuilder() : document(unique_ptr<Document>(new Document())) {}
     virtual ~DocumentBuilder() = default;
 
-    virtual DocumentBuilder& setTitle(string) = 0;
-    virtual DocumentBuilder& setHeader(string) = 0;
-    virtual DocumentBuilder& setFooter(string) = 0;
+    virtual DocumentBuilder& setTitle() = 0;
+    virtual DocumentBuilder& setHeader() = 0;
+    virtual DocumentBuilder& setFooter() = 0;
 
     unique_ptr<Document> getResult() { return std::move(document); }
 };
 
-// Concrete Builder
+// Concrete Builders
 class PDFBuilder : public DocumentBuilder {
 public:
-    DocumentBuilder& setTitle(string title) override {
-        document->setTitle(title);
+    DocumentBuilder& setTitle() override {
+        document->setTitle("PDF Title");
         return *this;
     }
 
-    DocumentBuilder& setHeader(string header) override {
-        document->setHeader(header);
+    DocumentBuilder& setHeader() override {
+        document->setHeader("PDF Header");
         return *this;
     }
 
-    DocumentBuilder& setFooter(string footer) override {
-        document->setFooter(footer);
+    DocumentBuilder& setFooter() override {
+        document->setFooter("PDF Footer");
+        return *this;
+    }
+};
+
+class DOCXBuilder : public DocumentBuilder {
+public:
+    DocumentBuilder& setTitle() override {
+        document->setTitle("DOCX Title");
+        return *this;
+    }
+
+    DocumentBuilder& setHeader() override {
+        document->setHeader("DOCX Header");
+        return *this;
+    }
+
+    DocumentBuilder& setFooter() override {
+        document->setFooter("DOCX Footer");
         return *this;
     }
 };
@@ -58,23 +76,33 @@ public:
 class DocumentDirector {
 public:
     void construct(DocumentBuilder& builder) {
-        builder.setTitle("This is the title!")
-               .setHeader("This is the header!")
-               .setFooter("This is the footer!");
+        builder.setTitle()
+               .setHeader()
+               .setFooter();
     }
 };
 
 int main() {
-    PDFBuilder pdfBuilder;
     DocumentDirector director;
-
+    
+    // create pdf 
+    PDFBuilder pdfBuilder;
     director.construct(pdfBuilder);
+    unique_ptr<Document> finalPDFDoc = pdfBuilder.getResult();
+    cout << finalPDFDoc->getTitle() << endl;
+    cout << finalPDFDoc->getHeader() << endl;
+    cout << finalPDFDoc->getFooter() << endl;
 
-    unique_ptr<Document> finalDoc = pdfBuilder.getResult();
+    // create docx 
+    DOCXBuilder docxBuilder;
+    docxBuilder.setTitle();
+    docxBuilder.setHeader();
+    unique_ptr<Document> finalDocX = docxBuilder.getResult();
+    cout << finalDocX->getTitle() << endl;
+    cout << finalDocX->getHeader() << endl;
+    cout << finalDocX->getFooter() << endl;
 
-    cout << finalDoc->getTitle() << endl;
-    cout << finalDoc->getHeader() << endl;
-    cout << finalDoc->getFooter() << endl;
+
 
     return 0;
 }
