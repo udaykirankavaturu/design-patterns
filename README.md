@@ -106,6 +106,6 @@ Design patterns are reusable solutions to common software design problems. This 
 ## Resources
 
 - **UML Diagrams**: https://drive.google.com/drive/folders/1kz8foFDOXaZKUyyKNO3jLOIjkJ2NgG13?usp=sharing
-- **Design Pattern Videos**: [YouTube Channel - udaykiran.tech](https://www.youtube.com/@udaykirantech)
+- **Design Pattern Videos**: [YouTube Channel - udaykiran.tech](https://www.youtube.com/watch?v=LP7dwEgWink&list=PLpVAqPqryuRuiGSz7U7rbYvouCDoM5z_4)
 
 ---
